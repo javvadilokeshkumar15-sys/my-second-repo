@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transport Dashboard</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f4f6f8;
+    }
+    .sidebar {
+      width: 220px;
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+    }
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
+    .sidebar ul {
+      list-style: none;
+    }
+    .sidebar ul li {
+      padding: 10px 0;
+      cursor: pointer;
+    }
+    .sidebar ul li:hover {
+      background-color: #34495e;
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar {
+      background: #fff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar h1 {
+      font-size: 20px;
+    }
+    .content {
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    table th {
+      background-color: #ecf0f1;
+    }
+    .status {
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: white;
+    }
+    .delivered { background-color: #27ae60; }
+    .in-transit { background-color: #f39c12; }
+    .delayed { background-color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Transport Co.</h2>
+    <ul>
+      <li onclick="loadDashboard()">Dashboard</li>
+      <li onclick="loadShipments()">Shipments</li>
+      <li onclick="alert('Settings clicked')">Settings</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="navbar">
+      <h1 id="page-title">Dashboard</h1>
+    </div>
+    <div class="content" id="main-content">
+      <!-- Dashboard Content Loaded by JS -->
+    </div>
+  </div>
+
+  <script>
+    function loadDashboard() {
+      document.getElementById("page-title").innerText = "Dashboard";
+      document.getElementById("main-content").innerHTML = `
+        <div class="card">
+          <h2>Welcome to the Transport Dashboard</h2>
+          <p>Use the sidebar to navigate between sections.</p>
+        </div>
+      `;
+    }
+
+    function loadShipments() {
+      document.getElementById("page-title").innerText = "Shipments";
+      document.getElementById("main-content").innerHTML = `
+        <div class="card">
+          <h2>Current Shipments</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Destination</th>
+                <th>Status</th>
+                <th>Driver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#001</td>
+                <td>New York</td>
+                <td><span class="status delivered">Delivered</span></td>
+                <td>John Doe</td>
+              </tr>
+              <tr>
+                <td>#002</td>
+                <td>Chicago</td>
+                <td><span class="status in-transit">In Transit</span></td>
+                <td>Jane Smith</td>
+              </tr>
+              <tr>
+                <td>#003</td>
+                <td>Los Angeles</td>
+                <td><span class="status delayed">Delayed</span></td>
+                <td>Mike Ross</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    // Load dashboard by default
+    window.onload = loadDashboard;
+  </script>
+</body>
+</html>
